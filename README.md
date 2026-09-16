@@ -1,0 +1,2 @@
+# Kids_Cooking_Class_Culinary_Camp
+Automated website repository for Kids_Cooking_Class_Culinary_Camp
