@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Register - Join Kids Cooking Family</title>
+    <meta name="description" content="Create a parent account to enroll your children in cooking classes, culinary camps, and birthday parties.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+            var d = localStorage.getItem('dir') || 'ltr';
+            document.documentElement.setAttribute('dir', d);
+        })();
+    </script>
+    <style>
+        body.auth-page-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--bg-alt);
+            padding: 24px;
+        }
+
+        .auth-shell {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .auth-toolbar {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+            z-index: 999;
+        }
+
+        [dir="rtl"] .auth-toolbar {
+            right: auto;
+            left: 16px;
+        }
+
+        .auth-card {
+            background: var(--card);
+            padding: 40px 32px 36px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .auth-logo {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .input-with-toggle {
+            position: relative;
+        }
+
+        .input-with-toggle input {
+            padding-inline-end: 48px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            inset-inline-end: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .password-toggle i {
+            font-size: 1rem;
+        }
+
+        .auth-terms {
+            text-align: left;
+            font-size: 0.85rem;
+            margin: 16px 0 20px;
+            color: var(--text-muted);
+        }
+
+        .auth-terms a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .auth-footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="auth-page-body">
+
+    <div class="auth-shell">
+        <div class="auth-toolbar">
+            <a href="index.html" class="icon-btn" title="Back to Home" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--card); border: 1px solid var(--border);">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <button type="button" class="icon-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button type="button" class="icon-btn" id="rtl-toggle" title="Toggle text direction" aria-label="Toggle RTL">
+                <i class="fas fa-right-left"></i>
+            </button>
+        </div>
+
+        <div class="auth-card">
+            <a href="index.html" class="auth-logo">
+                <i class="fas fa-utensils" aria-hidden="true"></i>
+                <span>Kids Cooking</span>
+            </a>
+
+            <h2 style="font-size: 1.35rem; margin-bottom: 6px;">Create Parent Account</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 22px;">Enroll your young chefs in cooking classes and track their culinary growth.</p>
+
+            <form action="dashboard.html">
+                <div class="form-group">
+                    <label for="parent-name">Parent / Guardian Full Name</label>
+                    <input type="text" id="parent-name" name="parent_name" placeholder="e.g. Sarah Smith" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Parent Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="sarah@example.com" required autocomplete="email">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                    <div class="form-group">
+                        <label for="child-name">First Child's Name</label>
+                        <input type="text" id="child-name" name="child_name" placeholder="e.g. Maya Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="child-age">Age Group</label>
+                        <select id="child-age" name="child_age" required>
+                            <option value="4-6">4–6 yrs</option>
+                            <option value="7-10" selected>7–10 yrs</option>
+                            <option value="11-13">11–13 yrs</option>
+                            <option value="14-17">14–17 yrs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create Password</label>
+                    <div class="input-with-toggle">
+                        <input type="password" id="password" name="password" placeholder="At least 8 characters" required autocomplete="new-password">
+                        <button type="button" class="password-toggle" data-password-toggle="password" title="Show password" aria-label="Show password">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-terms">
+                    <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" required style="margin-top: 3px;">
+                        <span>I accept the <a href="#">Studio Safety &amp; Allergen Policy</a> and <a href="#">Terms of Service</a>.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account &amp; Go to Dashboard</button>
+            </form>
+
+            <div class="auth-footer">
+                Already registered? <a href="login.html">Log In Here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth-ui.js"></script>
+</body>
+
+</html>

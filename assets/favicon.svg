@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Warm coral rounded background -->
+  <rect width="32" height="32" rx="8" fill="#FF5E36"/>
+  <!-- Chef Hat Icon in White -->
+  <path d="M16 7 C14.2 7 12.6 8 12 9.5 C10.8 9 9.2 9.8 8.8 11.2 C8.4 12.6 9 14.1 10.1 14.7 C10 15.1 10 15.5 10 16 C10 18.2 11.8 20 14 20 L18 20 C20.2 20 22 18.2 22 16 C22 15.5 22 15.1 21.9 14.7 C23 14.1 23.6 12.6 23.2 11.2 C22.8 9.8 21.2 9 20 9.5 C19.4 8 17.8 7 16 7 Z" fill="#FFFFFF"/>
+  <!-- Chef Hat Base Band -->
+  <rect x="11" y="21" width="10" height="4" rx="1.5" fill="#FFFFFF"/>
+  <!-- Whisk accent dot / heart -->
+  <circle cx="16" cy="14" r="1.5" fill="#FF5E36"/>
+</svg>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Culinary Camp Highlights - Kids Cooking</title>
+    <meta name="description" content="Discover our award-winning culinary summer camps, young chef workshops, and parent portal features.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+            var d = localStorage.getItem('dir') || 'ltr';
+            document.documentElement.setAttribute('dir', d);
+        })();
+    </script>
+    <style>
+        .split-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: 85vh;
+            padding: 40px 5%;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .split-hero::before {
+            display: none;
+        }
+
+        .split-hero .hero-content {
+            text-align: left;
+            color: var(--text);
+            max-width: 600px;
+        }
+
+        [dir="rtl"] .split-hero .hero-content {
+            text-align: right;
+        }
+
+        .split-hero .hero-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 60px 5%;
+            border-radius: var(--radius);
+        }
+
+        .stat-item h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .dashboard-mockup {
+            background: var(--card);
+            border: 4px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            position: relative;
+            max-width: min(100%, 650px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mock-sidebar {
+            width: 70px;
+            background: var(--bg-alt);
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 25px;
+            gap: 20px;
+            color: var(--primary);
+        }
+
+        .mock-content {
+            padding: 30px 30px 30px 95px;
+            min-height: 380px;
+            text-align: left;
+        }
+
+        [dir="rtl"] .mock-sidebar {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid var(--border);
+        }
+
+        [dir="rtl"] .mock-content {
+            padding: 30px 95px 30px 30px;
+            text-align: right;
+        }
+
+        .mock-charts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .mock-chart {
+            height: 90px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+        }
+
+        @media (max-width: 968px) {
+            .split-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .split-hero .hero-content {
+                text-align: center;
+                margin: 0 auto;
+                order: 1;
+            }
+
+            .split-hero .hero-image {
+                order: 2;
+            }
+        }
+
+        /* HOME2 — Why Kids Cooking Feature Section */
+        .why-cooking,
+        .why-hydro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .why-cooking-images,
+        .why-hydro-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 200px 200px;
+            gap: 14px;
+        }
+
+        .why-cooking-images img,
+        .why-hydro-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: block;
+        }
+
+        .why-cooking-images img:first-child,
+        .why-hydro-images img:first-child {
+            grid-row: span 2;
+            height: 100%;
+        }
+
+        .why-cooking-content h2,
+        .why-hydro-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .why-cooking-content .section-lead,
+        .why-hydro-content .section-lead {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .why-feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .why-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .why-feature-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .why-feature-body h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .why-feature-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .card-grid--three .card img {
+                aspect-ratio: 16 / 10 !important;
+                object-fit: cover !important;
+                height: auto !important;
+            }
+
+            .why-cooking,
+            .why-hydro {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card .card-content {
+                text-align: center;
+            }
+
+            .card-grid--three .card img {
+                aspect-ratio: 16 / 10 !important;
+                object-fit: cover !important;
+            }
+
+            .why-cooking,
+            .why-hydro {
+                grid-template-columns: 1fr;
+            }
+
+            .why-cooking-images,
+            .why-hydro-images {
+                grid-template-rows: 160px 160px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .mock-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: center;
+                padding: 12px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .mock-content {
+                padding: 20px;
+            }
+
+            .mock-charts {
+                grid-template-columns: 1fr;
+            }
+
+            [dir="rtl"] .mock-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <i class="fas fa-utensils"></i>
+            <span>Kids Cooking</span>
+        </a>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index2.html">Camp Highlights</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Classes</a></li>
+                <li><a href="applications.html">Summer Camps</a></li>
+                <li><a href="pricing.html">Birthday Parties</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+
+            <a href="cart.html" class="icon-btn" title="Enrollment Cart">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="login.html" class="icon-btn" title="Parent Portal">
+                <i class="fas fa-user"></i>
+            </a>
+            <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+                <i class="fas fa-right-left"></i>
+            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" type="button">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Split Hero Section -->
+        <section class="split-hero">
+            <div class="hero-content">
+                <h1>Culinary Adventures for <span style="color: var(--primary);">Young Chefs</span></h1>
+                <p>Interactive cooking classes, exciting culinary camps, and hands-on kitchen experiments where kids discover the joys of fresh food, knife safety, and creative flavor.</p>
+                <div class="hero-btns" style="justify-content: flex-start;">
+                    <a href="applications.html" class="btn btn-primary">Explore Summer Camps</a>
+                    <a href="products.html" class="btn btn-secondary">Classes by Age</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80" alt="Kids Cooking Studio">
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section>
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h2>12,500+</h2>
+                        <p>Young Chefs Taught</p>
+                    </div>
+                    <div class="stat-item">
+                        <h2>100%</h2>
+                        <p>Kid-Safe Kitchen Stations</p>
+                    </div>
+                    <div class="stat-item">
+                        <h2>1:6</h2>
+                        <p>Chef-to-Camper Ratio</p>
+                    </div>
+                    <div class="stat-item">
+                        <h2>4.9 / 5</h2>
+                        <p>Parent Satisfaction Score</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Kids Cooking? Section -->
+        <section id="why-cooking" style="background-color: var(--bg-alt);">
+            <div class="container">
+                <div class="why-cooking">
+
+                    <!-- Mosaic Image Grid -->
+                    <div class="why-cooking-images">
+                        <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?auto=format&fit=crop&w=600&q=80"
+                            alt="Young chef cooking in kitchen" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+                            alt="Artisan pizza" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+                            alt="Cupcake decorating" loading="lazy">
+                    </div>
+
+                    <!-- Feature List -->
+                    <div class="why-cooking-content">
+                        <h2>Why Cooking Is <span style="color: var(--primary);">Magic for Kids</span></h2>
+                        <p class="section-lead">Cooking isn't just about food — it's science, math, creativity, and life skills rolled into one delicious experience.</p>
+
+                        <div class="why-feature-list">
+                            <div class="why-feature-item">
+                                <div class="why-feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                                <div class="why-feature-body">
+                                    <h4>Lifelong Kitchen Confidence</h4>
+                                    <p>Kids gain independence, learn proper knife safety, and understand kitchen sanitation from real chefs.</p>
+                                </div>
+                            </div>
+                            <div class="why-feature-item">
+                                <div class="why-feature-icon"><i class="fas fa-carrot"></i></div>
+                                <div class="why-feature-body">
+                                    <h4>Say Goodbye to Picky Eating</h4>
+                                    <p>Children who chop and season their own vegetables eagerly eat broccoli, zucchini, spinach, and fresh herbs!</p>
+                                </div>
+                            </div>
+                            <div class="why-feature-item">
+                                <div class="why-feature-icon"><i class="fas fa-flask"></i></div>
+                                <div class="why-feature-body">
+                                    <h4>Hands-On STEM Science</h4>
+                                    <p>Measuring fractions, observing yeast fermentation, and understanding caramelization make learning tasty.</p>
+                                </div>
+                            </div>
+                            <div class="why-feature-item">
+                                <div class="why-feature-icon"><i class="fas fa-users"></i></div>
+                                <div class="why-feature-body">
+                                    <h4>Teamwork &amp; Friendship</h4>
+                                    <p>Kids collaborate at culinary prep stations, solve recipe challenges together, and celebrate over shared meals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Parent Portal Interactive Showcase -->
+        <section style="padding: 80px 5%;">
+            <div class="container text-center">
+                <h2 class="section-title">Built For Modern Parents: The Parent Portal</h2>
+                <p style="max-width: 620px; margin: 0 auto 40px; color: var(--text-muted);">Effortlessly enroll your children in class sessions, track upcoming session schedules, view recipes taught, access high-res photos, and manage tuition payments.</p>
+
+                <div class="dashboard-mockup">
+                    <div class="mock-sidebar">
+                        <i class="fas fa-utensils"></i>
+                        <i class="fas fa-calendar-alt"></i>
+                        <i class="fas fa-book-open"></i>
+                        <i class="fas fa-camera"></i>
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="mock-content">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+                            <div>
+                                <h3 style="margin: 0; font-size: 1.15rem;">Maya &amp; Leo's Cooking Hub</h3>
+                                <p style="margin: 2px 0 0; font-size: 0.85rem; color: var(--text-muted);">Parent: Sarah Smith · Status: Active</p>
+                            </div>
+                            <a href="dashboard.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.8rem; min-width: unset;">Open Portal</a>
+                        </div>
+                        <div class="mock-charts">
+                            <div class="mock-chart">
+                                <span style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">Oct 10</span>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);">Next Pasta Session</span>
+                            </div>
+                            <div class="mock-chart">
+                                <span style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">14 Cards</span>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);">Recipes Taught</span>
+                            </div>
+                            <div class="mock-chart">
+                                <span style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">24 Photos</span>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);">Session Snaps</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; padding: 12px; background: var(--bg-alt); border-radius: 8px; border: 1px solid var(--border); font-size: 0.85rem;">
+                            <strong>Latest Update:</strong> Chef Antonio uploaded the step-by-step <em>Handmade Fettuccine &amp; Pesto</em> recipe card and 6 new class photos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section-cta-band" style="background: var(--primary); color: white;">
+            <div class="container text-center">
+                <h2 style="color: white; margin-bottom: 15px;">Give Your Child The Gift of Cooking!</h2>
+                <p style="margin-bottom: 30px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Classes run every weekend and camps run Monday through Friday during school breaks and summer.
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="products.html" class="btn btn-primary btn-primary-on-dark">Enroll in Classes</a>
+                    <a href="pricing.html" class="btn btn-secondary btn-secondary-on-dark">Birthday Packages</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo">
+                        <i class="fas fa-utensils"></i>
+                        <span>Kids Cooking</span>
+                    </div>
+                    <p>Inspiring culinary confidence, kitchen safety, and healthy eating habits through joyful hands-on cooking classes and culinary camps.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="footer-social-link" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="footer-social-link" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer-social-link" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="products.html">Classes by Age</a></li>
+                        <li><a href="applications.html">Summer Camps</a></li>
+                        <li><a href="pricing.html">Birthday Packages</a></li>
+                        <li><a href="dashboard.html">Parent Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="products.html">Tiny Chefs (4–6)</a></li>
+                        <li><a href="products.html">Junior Chefs (7–10)</a></li>
+                        <li><a href="products.html">Tween Culinary (11–13)</a></li>
+                        <li><a href="products.html">Teen Academy (14–17)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Kitchen Studio</h4>
+                    <p>hello@kidscooking.com</p>
+                    <p>+1 (800) 543-CHEF</p>
+                    <p>124 Culinary Way, Suite 200, San Francisco, CA</p>
+                </div>
+            </div>
+            <p>&copy; 2026 Kids Cooking Class & Culinary Camp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

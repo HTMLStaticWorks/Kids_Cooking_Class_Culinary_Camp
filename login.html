@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Parent Portal Login - Kids Cooking</title>
+    <meta name="description" content="Log in to your Kids Cooking Parent Portal to manage class enrollments, track session schedules, and download recipes.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+            var d = localStorage.getItem('dir') || 'ltr';
+            document.documentElement.setAttribute('dir', d);
+        })();
+    </script>
+    <style>
+        body.auth-page-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--bg-alt);
+            padding: 24px;
+        }
+        .auth-shell {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+        }
+        .auth-toolbar {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+            z-index: 999;
+        }
+        [dir="rtl"] .auth-toolbar {
+            right: auto;
+            left: 16px;
+        }
+        .auth-card {
+            background: var(--card);
+            padding: 40px 32px 36px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .auth-logo {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .input-with-toggle {
+            position: relative;
+        }
+        .input-with-toggle input {
+            padding-inline-end: 48px;
+        }
+        .password-toggle {
+            position: absolute;
+            inset-inline-end: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .password-toggle i {
+            font-size: 1rem;
+        }
+        .auth-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .auth-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .social-login {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            cursor: pointer;
+            font-weight: 500;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: var(--transition);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .social-btn:hover { 
+                background-color: var(--bg-alt); 
+                border-color: var(--primary);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+        }
+        .auth-footer {
+            margin-top: 22px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .auth-footer a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .forgot-password-link {
+            color: var(--primary);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .forgot-password-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="auth-page-body">
+
+    <div class="auth-shell">
+        <div class="auth-toolbar">
+            <a href="index.html" class="icon-btn" title="Back to Home" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--card); border: 1px solid var(--border);">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <button type="button" class="icon-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button type="button" class="icon-btn" id="rtl-toggle" title="Toggle text direction" aria-label="Toggle RTL">
+                <i class="fas fa-right-left"></i>
+            </button>
+        </div>
+
+        <div class="auth-card">
+            <a href="index.html" class="auth-logo">
+                <i class="fas fa-utensils" aria-hidden="true"></i>
+                <span>Kids Cooking</span>
+            </a>
+
+            <h2 style="font-size: 1.4rem; margin-bottom: 6px;">Parent Portal Login</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px;">Manage your child's cooking classes, view schedules, recipes, and photos.</p>
+
+            <form action="dashboard.html">
+                <div class="form-group">
+                    <label for="email">Parent Email Address</label>
+                    <input type="email" id="email" name="email" value="sarah.smith@example.com" required autocomplete="email">
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label for="password">Password</label>
+                    <div class="input-with-toggle">
+                        <input type="password" id="password" name="password" value="Password123" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" data-password-toggle="password" title="Show password" aria-label="Show password">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-options">
+                    <label>
+                        <input type="checkbox" name="remember" checked> Remember Me
+                    </label>
+                    <a href="#" class="forgot-password-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Log In to Dashboard</button>
+            </form>
+
+            <div class="social-login">
+                <button type="button" class="social-btn" title="Sign in with Google">
+                    <i class="fab fa-google" style="font-size:1.1rem; color:#4285F4;"></i>
+                    <span>Sign in with Google</span>
+                </button>
+                <button type="button" class="social-btn" title="Sign in with Apple">
+                    <i class="fab fa-apple" style="font-size:1.2rem;"></i>
+                    <span>Sign in with Apple</span>
+                </button>
+            </div>
+
+            <div class="auth-footer">
+                New culinary family? <a href="register.html">Register Parent Account</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth-ui.js"></script>
+</body>
+</html>

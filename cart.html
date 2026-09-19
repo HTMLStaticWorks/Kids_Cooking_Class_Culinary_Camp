@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Enrollment Cart - Kids Cooking</title>
+    <meta name="description" content="Review your child's cooking class and culinary camp reservations before checkout.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .cart-items {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .item-info h3 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .item-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--bg-alt);
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover {
+            color: var(--primary);
+        }
+
+        .item-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 80px;
+            text-align: right;
+            color: var(--primary);
+        }
+
+        .remove-btn {
+            color: #EF4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .remove-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-summary {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .summary-total {
+            border-top: 2px solid var(--border);
+            padding-top: 15px;
+            margin-top: 15px;
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .promo-code {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .promo-code input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .promo-code button {
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: 15px;
+            }
+
+            .cart-item img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .quantity-controls {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .item-total {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .remove-btn {
+                grid-column: 2;
+                justify-self: end;
+                margin-top: -30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <i class="fas fa-utensils"></i>
+            <span>Kids Cooking</span>
+        </a>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index2.html">Camp Highlights</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Classes</a></li>
+                <li><a href="applications.html">Summer Camps</a></li>
+                <li><a href="pricing.html">Birthday Parties</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+
+            <a href="cart.html" class="icon-btn" title="Enrollment Cart">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="login.html" class="icon-btn" title="Parent Portal">
+                <i class="fas fa-user"></i>
+            </a>
+            <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+                <i class="fas fa-right-left"></i>
+            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" type="button">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section style="background-color: var(--bg-alt); text-align: center; padding: 60px 5%;">
+            <div class="container">
+                <h1 class="section-title">Class Enrollment Cart</h1>
+                <p style="color: var(--text-muted);">Review your session reservations and child enrollment details below.</p>
+                <img class="page-intro-image" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80" alt="Fresh pizza ingredients representing selected kids cooking sessions" loading="lazy">
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="cart-container">
+                    <div class="cart-items">
+                        <!-- Cart Item 1 -->
+                        <div class="cart-item">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80" alt="Pizza Class">
+                            <div class="item-info">
+                                <h3>Junior Pizza Masters (Ages 7–10)</h3>
+                                <p>Camper: <strong>Maya Smith</strong> · Sat, Oct 10 · 10:00 AM – 12:00 PM</p>
+                                <p style="font-size: 0.8rem; color: var(--secondary);"><i class="fas fa-check"></i> Ingredients, chef apron &amp; recipe card included</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <span style="font-weight: 600;">1 Child</span>
+                            </div>
+                            <div class="item-total">$45.00</div>
+                            <button class="remove-btn" title="Remove Reservation"><i class="fas fa-trash"></i></button>
+                        </div>
+
+                        <!-- Cart Item 2 -->
+                        <div class="cart-item">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=300&q=80" alt="Cupcake Baking">
+                            <div class="item-info">
+                                <h3>Tiny Bakers: Berry Cupcake Lab (Ages 4–6)</h3>
+                                <p>Camper: <strong>Leo Smith</strong> · Sun, Oct 18 · 11:00 AM – 12:30 PM</p>
+                                <p style="font-size: 0.8rem; color: var(--secondary);"><i class="fas fa-check"></i> 4 take-home decorated cupcakes</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <span style="font-weight: 600;">1 Child</span>
+                            </div>
+                            <div class="item-total">$38.00</div>
+                            <button class="remove-btn" title="Remove Reservation"><i class="fas fa-trash"></i></button>
+                        </div>
+
+                        <!-- Cart Item 3 -->
+                        <div class="cart-item">
+                            <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=300&q=80" alt="Personalized Apron">
+                            <div class="item-info">
+                                <h3>Custom Embroidered Young Chef Apron &amp; Hat</h3>
+                                <p>Personalization: "Chef Maya" (Youth Medium, Coral)</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <span style="font-weight: 600;">1 Set</span>
+                            </div>
+                            <div class="item-total">$22.00</div>
+                            <button class="remove-btn" title="Remove Item"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h2 style="margin-bottom: 20px; font-size: 1.4rem;">Enrollment Summary</h2>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>$105.00</span>
+                        </div>
+                        <div class="summary-row" style="color: var(--secondary);">
+                            <span>Sibling Discount (10%)</span>
+                            <span>−$10.50</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Studio Culinary Materials</span>
+                            <span style="color: var(--secondary); font-weight: 600;">FREE</span>
+                        </div>
+
+                        <div class="summary-row summary-total">
+                            <span>Total Due</span>
+                            <span style="color: var(--primary);">$94.50</span>
+                        </div>
+
+                        <div class="promo-code">
+                            <input type="text" placeholder="Promo code (e.g. SIBLING10)">
+                            <button class="btn btn-secondary" style="min-width: unset;">Apply</button>
+                        </div>
+
+                        <a href="dashboard.html" class="btn btn-primary" style="width: 100%; margin-bottom: 12px; display: flex; justify-content: center; align-items: center;">
+                            Complete Enrollment &amp; Pay
+                        </a>
+                        <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+                            <i class="fas fa-lock"></i> 256-bit Encrypted Parent Checkout
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo">
+                        <i class="fas fa-utensils"></i>
+                        <span>Kids Cooking</span>
+                    </div>
+                    <p>Inspiring culinary confidence, kitchen safety, and healthy eating habits through joyful hands-on cooking classes and culinary camps.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="footer-social-link" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="footer-social-link" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer-social-link" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="products.html">Classes by Age</a></li>
+                        <li><a href="applications.html">Summer Camps</a></li>
+                        <li><a href="pricing.html">Birthday Packages</a></li>
+                        <li><a href="dashboard.html">Parent Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="products.html">Tiny Chefs (4–6)</a></li>
+                        <li><a href="products.html">Junior Chefs (7–10)</a></li>
+                        <li><a href="products.html">Tween Lab (11–13)</a></li>
+                        <li><a href="products.html">Teen Academy (14–17)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Kitchen Studio</h4>
+                    <p>hello@kidscooking.com</p>
+                    <p>+1 (800) 543-CHEF</p>
+                    <p>124 Culinary Way, Suite 200, San Francisco, CA</p>
+                </div>
+            </div>
+            <p>&copy; 2026 Kids Cooking Class & Culinary Camp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

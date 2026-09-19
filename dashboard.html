@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Parent Dashboard - Kids Cooking</title>
+    <meta name="description" content="Parent dashboard for enrolling children in class sessions, tracking upcoming session schedules, viewing recipes taught, accessing session photos, and managing payments.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', t);
+            var d = localStorage.getItem('dir') || 'ltr';
+            document.documentElement.setAttribute('dir', d);
+        })();
+    </script>
+</head>
+
+<body class="dashboard-body">
+
+    <aside class="dashboard-sidebar" aria-label="Main navigation">
+        <a href="index.html" class="dashboard-sidebar-header" style="text-decoration: none;" title="Go to Home">
+            <i class="fas fa-utensils" aria-hidden="true"></i>
+            <span>Kids Cooking</span>
+        </a>
+        <nav class="dashboard-nav" aria-label="Dashboard sections">
+            <a href="#overview" aria-current="page"><i class="fas fa-th-large" aria-hidden="true"></i> Overview</a>
+            <a href="#enroll-child"><i class="fas fa-user-plus" aria-hidden="true"></i> Enroll Children</a>
+            <a href="#schedules"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Upcoming Schedules</a>
+            <a href="#recipes"><i class="fas fa-book-open" aria-hidden="true"></i> Recipes Taught</a>
+            <a href="#photos"><i class="fas fa-camera" aria-hidden="true"></i> Session Photos</a>
+            <a href="#payments"><i class="fas fa-credit-card" aria-hidden="true"></i> Manage Payments</a>
+            <a href="#alerts"><i class="fas fa-bell" aria-hidden="true"></i> Notifications</a>
+            <a href="#settings"><i class="fas fa-cog" aria-hidden="true"></i> Family Profile</a>
+        </nav>
+        <div class="dashboard-sidebar-footer">
+            <a href="login.html" class="btn btn-secondary" style="width: 100%; margin-bottom: 0.5rem; justify-content: center;"><i class="fas fa-sign-out-alt" style="margin-inline-end: 8px;"></i> Logout</a>
+        </div>
+    </aside>
+
+    <div class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div style="display: flex; align-items: center; min-width: 0;">
+                <button type="button" class="menu-toggle" id="dashboard-menu-toggle" aria-label="Toggle menu" style="flex-shrink: 0;">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div style="min-width: 0; overflow: hidden; margin-inline-start: 10px;">
+                    <h1 style="margin: 0; font-size: 1.1rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Parent Portal Dashboard</h1>
+                </div>
+            </div>
+            <div class="dashboard-topbar-actions">
+                <button type="button" class="icon-btn" id="theme-toggle" title="Toggle theme"
+                    aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button type="button" class="icon-btn" id="rtl-toggle" title="Toggle text direction"
+                    aria-label="Toggle RTL">
+                    <i class="fas fa-right-left"></i>
+                </button>
+                <a href="#settings" class="topbar-profile" title="Parent Profile" style="
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, var(--primary), var(--secondary));
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    text-decoration: none;
+                    transition: all 0.2s ease;
+                    box-shadow: 0 4px 10px rgba(255, 94, 54, 0.3);
+                    margin-inline-start: 6px;
+                    flex-shrink: 0;
+                ">
+                    <i class="fas fa-user" style="font-size: 1rem;"></i>
+                </a>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Welcome back, <strong>Sarah Smith</strong>! Here is an overview of your young chefs' culinary journey.</p>
+
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-panel" style="margin-top: 0;">
+                <h2>Overview & Activity</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Quick summary of your children's upcoming cooking sessions, recipe badges, and account status.</p>
+                <div class="dashboard-metrics">
+                    <div class="metric-card">
+                        <h3>Enrolled Children</h3>
+                        <p class="metric-value" style="color: var(--primary);">2</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Maya (9) &amp; Leo (6)</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Upcoming Sessions</h3>
+                        <p class="metric-value" style="color: var(--secondary);">3</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Next: Sat, 10:00 AM</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Recipes Mastered</h3>
+                        <p class="metric-value" style="color: var(--accent);">14</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Cards available below</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Tuition Balance</h3>
+                        <p class="metric-value" style="color: var(--secondary);">$0.00</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">All fees paid in full</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enroll Children in Class Sessions -->
+            <section id="enroll-child" class="dashboard-panel">
+                <h2>Enroll Children in Class Sessions</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Select your child, choose their age-tailored cooking session or summer camp, and confirm enrollment instantly.</p>
+                <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+                    <form onsubmit="event.preventDefault(); alert('Session enrollment confirmed for your young chef!');">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">Select Child</label>
+                                <select style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);">
+                                    <option>Maya Smith (Age 9 - Junior Chef)</option>
+                                    <option>Leo Smith (Age 6 - Tiny Chef)</option>
+                                    <option>+ Add New Child</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">Program / Class Track</label>
+                                <select style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);">
+                                    <option>Junior Pizza &amp; Calzone Lab ($45.00)</option>
+                                    <option>Fresh Pasta Making Masterclass ($48.00)</option>
+                                    <option>Tiny Bakers Cupcake Decorating ($38.00)</option>
+                                    <option>Sushi &amp; Asian Dumplings ($50.00)</option>
+                                    <option>Summer Camp: Baking &amp; Pastry Arts Week ($495.00)</option>
+                                    <option>Summer Camp: Around The World Week ($495.00)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">Session Date &amp; Time</label>
+                                <select style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);">
+                                    <option>Saturday, Oct 10 · 10:00 AM - 12:00 PM</option>
+                                    <option>Saturday, Oct 10 · 2:00 PM - 4:00 PM</option>
+                                    <option>Sunday, Oct 11 · 11:00 AM - 1:00 PM</option>
+                                    <option>Next Summer Camp Week: July 13 - 17 (9 AM - 3 PM)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 5px;"></i> Apron, hat, ingredients, and recipe binder included.</span>
+                            <button type="submit" class="btn btn-primary">Confirm Enrollment</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Tracking Upcoming Session Schedules -->
+            <section id="schedules" class="dashboard-panel">
+                <h2>Upcoming Session Schedules</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">View scheduled class dates, studio stations, instructor chefs, and what to bring.</p>
+                <div class="dashboard-two-col">
+                    <div style="padding: 1.25rem; background: var(--bg-alt); border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <strong>Fresh Handmade Fettuccine</strong>
+                            <span style="background: rgba(16, 185, 129, 0.15); color: var(--secondary); font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Confirmed</span>
+                        </div>
+                        <p style="margin: 0.4rem 0 0; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-user-circle" style="margin-right: 5px;"></i> Camper: <strong>Maya Smith</strong></p>
+                        <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-calendar" style="margin-right: 5px;"></i> Sat, Oct 10 · 10:00 AM – 12:00 PM</p>
+                        <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-utensils" style="margin-right: 5px;"></i> Station #3 · Chef Antonio</p>
+                        <div style="margin-top: 10px; display: flex; gap: 8px;">
+                            <button type="button" class="btn btn-secondary" style="min-width: unset; padding: 6px 14px; font-size: 0.8rem;">Add to Calendar</button>
+                            <button type="button" class="btn btn-secondary" style="min-width: unset; padding: 6px 14px; font-size: 0.8rem;">Reschedule</button>
+                        </div>
+                    </div>
+                    <div style="padding: 1.25rem; background: var(--bg-alt); border-radius: 12px; border: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <strong>Tiny Bakers: Fun Berry Cupcakes</strong>
+                            <span style="background: rgba(16, 185, 129, 0.15); color: var(--secondary); font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Confirmed</span>
+                        </div>
+                        <p style="margin: 0.4rem 0 0; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-user-circle" style="margin-right: 5px;"></i> Camper: <strong>Leo Smith</strong></p>
+                        <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-calendar" style="margin-right: 5px;"></i> Sun, Oct 18 · 11:00 AM – 12:30 PM</p>
+                        <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--text-muted);"><i class="fas fa-utensils" style="margin-right: 5px;"></i> Station #1 · Chef Claire</p>
+                        <div style="margin-top: 10px; display: flex; gap: 8px;">
+                            <button type="button" class="btn btn-secondary" style="min-width: unset; padding: 6px 14px; font-size: 0.8rem;">Add to Calendar</button>
+                            <button type="button" class="btn btn-secondary" style="min-width: unset; padding: 6px 14px; font-size: 0.8rem;">Reschedule</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Viewing Recipes Taught -->
+            <section id="recipes" class="dashboard-panel">
+                <h2>Recipes Taught in Sessions</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Access step-by-step recipes taught in your children's classes. Print and recreate delicious favorites at home!</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+                    <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Margherita Pizza" style="width: 100%; height: 130px; object-fit: cover;">
+                        <div style="padding: 12px 15px;">
+                            <h4 style="margin: 0 0 5px;">Artisan Margherita Pizza</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Taught to Maya · Junior Chefs</p>
+                            <button type="button" class="btn btn-secondary" style="width: 100%; padding: 6px; font-size: 0.8rem;"><i class="fas fa-file-pdf" style="margin-right: 6px;"></i> Download Recipe Card</button>
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80" alt="Vanilla Cupcakes" style="width: 100%; height: 130px; object-fit: cover;">
+                        <div style="padding: 12px 15px;">
+                            <h4 style="margin: 0 0 5px;">Vanilla Bean Cupcakes</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Taught to Leo · Tiny Chefs</p>
+                            <button type="button" class="btn btn-secondary" style="width: 100%; padding: 6px; font-size: 0.8rem;"><i class="fas fa-file-pdf" style="margin-right: 6px;"></i> Download Recipe Card</button>
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80" alt="Rainbow Sushi Rolls" style="width: 100%; height: 130px; object-fit: cover;">
+                        <div style="padding: 12px 15px;">
+                            <h4 style="margin: 0 0 5px;">Rainbow Veggie Sushi Rolls</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Taught to Maya · World Cuisine</p>
+                            <button type="button" class="btn btn-secondary" style="width: 100%; padding: 6px; font-size: 0.8rem;"><i class="fas fa-file-pdf" style="margin-right: 6px;"></i> Download Recipe Card</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accessing Photos from Sessions -->
+            <section id="photos" class="dashboard-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <h2 style="margin: 0;">Session Photo Gallery</h2>
+                        <p style="color: var(--text-muted); margin: 4px 0 0;">High-resolution snapshots captured by our studio photographer during your children's classes.</p>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;"><i class="fas fa-download" style="margin-right: 6px;"></i> Download All (ZIP)</button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div style="border-radius: 12px; overflow: hidden; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1507034589631-9433cc6bc453?auto=format&fit=crop&w=400&q=80" alt="Leo Flour Fun" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+                        <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Leo · Tiny Bakers Lab</span>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80" alt="Maya Pasta Rolling" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+                        <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Maya · Pasta Artisans</span>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=400&q=80" alt="Camp Graduation Ceremony" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+                        <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Summer Camp Group</span>
+                    </div>
+                    <div style="border-radius: 12px; overflow: hidden; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=400&q=80" alt="Tasting Fresh Pizza" style="width: 100%; height: 180px; object-fit: cover; display: block;">
+                        <span style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.65); color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Pizza Tasting Day</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Managing Payments -->
+            <section id="payments" class="dashboard-panel">
+                <h2>Manage Payments &amp; Receipts</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">View tuition payment history, download tax receipts, and manage your saved payment methods.</p>
+                <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <div style="font-weight: 700; font-size: 1.05rem;">Saved Payment Method</div>
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;"><i class="fab fa-cc-visa" style="color: #2563eb; font-size: 1.2rem; margin-right: 6px;"></i> Visa ending in •••• 4242 (Expires 08/28)</div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Update Card</button>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border);">
+                                <th style="padding: 10px 8px;">Date</th>
+                                <th style="padding: 10px 8px;">Description</th>
+                                <th style="padding: 10px 8px;">Child</th>
+                                <th style="padding: 10px 8px;">Amount</th>
+                                <th style="padding: 10px 8px;">Status</th>
+                                <th style="padding: 10px 8px; text-align: right;">Receipt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px 8px;">Sep 18, 2026</td>
+                                <td style="padding: 12px 8px;">Fresh Pasta From Scratch Session</td>
+                                <td style="padding: 12px 8px;">Maya Smith</td>
+                                <td style="padding: 12px 8px; font-weight: 600;">$48.00</td>
+                                <td style="padding: 12px 8px;"><span style="color: var(--secondary); font-weight: 600;">Paid</span></td>
+                                <td style="padding: 12px 8px; text-align: right;"><button type="button" class="btn btn-secondary" style="min-width: unset; padding: 4px 10px; font-size: 0.8rem;">PDF</button></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px 8px;">Sep 12, 2026</td>
+                                <td style="padding: 12px 8px;">Tiny Bakers Cupcake Decorating</td>
+                                <td style="padding: 12px 8px;">Leo Smith</td>
+                                <td style="padding: 12px 8px; font-weight: 600;">$38.00</td>
+                                <td style="padding: 12px 8px;"><span style="color: var(--secondary); font-weight: 600;">Paid</span></td>
+                                <td style="padding: 12px 8px; text-align: right;"><button type="button" class="btn btn-secondary" style="min-width: unset; padding: 4px 10px; font-size: 0.8rem;">PDF</button></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 8px;">Aug 04, 2026</td>
+                                <td style="padding: 12px 8px;">Summer Camp: Baking Arts Week</td>
+                                <td style="padding: 12px 8px;">Maya Smith</td>
+                                <td style="padding: 12px 8px; font-weight: 600;">$495.00</td>
+                                <td style="padding: 12px 8px;"><span style="color: var(--secondary); font-weight: 600;">Paid</span></td>
+                                <td style="padding: 12px 8px; text-align: right;"><button type="button" class="btn btn-secondary" style="min-width: unset; padding: 4px 10px; font-size: 0.8rem;">PDF</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section id="alerts" class="dashboard-panel">
+                <h2>Studio Notifications &amp; Reminders</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Important class reminders, allergen updates, and holiday schedule notices.</p>
+                <ul style="list-style: none; font-size: 0.95rem;">
+                    <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-info-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                        <div>
+                            <strong>Attire Reminder for Saturday's Pasta Class:</strong>
+                            <p style="margin: 2px 0 0; color: var(--text-muted);">Please ensure Maya wears closed-toe shoes and has long hair tied back. Embroidered aprons are waiting at Station #3!</p>
+                        </div>
+                    </li>
+                    <li style="padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-check-circle" style="color: var(--secondary); margin-top: 4px;"></i>
+                        <div>
+                            <strong>New Photos Uploaded:</strong>
+                            <p style="margin: 2px 0 0; color: var(--text-muted);">6 new high-resolution photos from Leo's cupcake decorating session are now available in your gallery.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Family Profile & Settings -->
+            <section id="settings" class="dashboard-panel">
+                <h2>Family Profile &amp; Children Details</h2>
+
+                <!-- Parent Card -->
+                <div class="profile-header" style="
+                    background: var(--bg-alt);
+                    border: 1px solid var(--border);
+                    border-radius: 16px;
+                    padding: 2rem;
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 1.5rem;
+                    flex-wrap: wrap;
+                ">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, var(--primary), var(--secondary));
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+                        font-size: 2rem;
+                        color: #fff;
+                        box-shadow: 0 4px 16px rgba(255, 94, 54, 0.3);
+                    ">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div style="flex: 1; min-width: 160px;">
+                        <div style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; color: var(--text);">Sarah Smith</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">sarah.smith@example.com · +1 (555) 234-8901</div>
+                        <span style="
+                            display: inline-block;
+                            background: var(--secondary);
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            padding: 3px 12px;
+                            border-radius: 999px;
+                        ">Culinary Parent Member</span>
+                    </div>
+                </div>
+
+                <!-- Young Chef Profiles -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <h4 style="margin: 0; font-size: 1.05rem;">Maya Smith</h4>
+                            <span style="font-size: 0.8rem; background: var(--primary); color: white; padding: 2px 8px; border-radius: 999px;">Age 9</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;"><strong>Allergies / Dietary:</strong> Tree nut allergy (Strictly nut-free)</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;"><strong>Apron Size:</strong> Youth Medium</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);"><strong>Favorite Dish:</strong> Homemade Ravioli with Butter Sage</p>
+                    </div>
+
+                    <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <h4 style="margin: 0; font-size: 1.05rem;">Leo Smith</h4>
+                            <span style="font-size: 0.8rem; background: var(--secondary); color: white; padding: 2px 8px; border-radius: 999px;">Age 6</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;"><strong>Allergies / Dietary:</strong> Vegetarian</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;"><strong>Apron Size:</strong> Youth Small</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);"><strong>Favorite Dish:</strong> Confetti Berry Cupcakes</p>
+                    </div>
+                </div>
+
+                <!-- Sign Out -->
+                <a href="login.html" class="btn btn-secondary" style="width:100%; justify-content:center;">
+                    <i class="fas fa-sign-out-alt" style="margin-right:8px;"></i> Sign Out of Parent Portal
+                </a>
+            </section>
+        </div>
+
+        <div class="dashboard-backdrop" id="dashboard-backdrop"></div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
+
+            var sidebar = document.querySelector('.dashboard-sidebar');
+            var backdrop = document.getElementById('dashboard-backdrop');
+            var menuToggle = document.getElementById('dashboard-menu-toggle');
+            var links = document.querySelectorAll('.dashboard-nav a');
+            var sections = document.querySelectorAll('.dashboard-content section[id]');
+
+            function toggleMenu() {
+                sidebar.classList.toggle('active');
+                backdrop.classList.toggle('active');
+            }
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleMenu);
+            }
+
+            if (backdrop) {
+                backdrop.addEventListener('click', toggleMenu);
+            }
+
+            function setCurrent(hash) {
+                var id = (hash || '#overview').replace('#', '') || 'overview';
+                links.forEach(function (a) {
+                    if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
+                    else a.removeAttribute('aria-current');
+                });
+            }
+
+            setCurrent('#overview');
+
+            var scrollLock = false;
+            var scrollLockTimer = null;
+
+            links.forEach(function (a) {
+                a.addEventListener('click', function () {
+                    setCurrent(a.getAttribute('href'));
+                    scrollLock = true;
+                    clearTimeout(scrollLockTimer);
+                    scrollLockTimer = setTimeout(function () {
+                        scrollLock = false;
+                    }, 800);
+
+                    if (window.innerWidth <= 900) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            var obs = new IntersectionObserver(function (entries) {
+                if (scrollLock) return;
+                entries.forEach(function (en) {
+                    if (en.isIntersecting) setCurrent('#' + en.target.id);
+                });
+            }, { root: document.querySelector('.dashboard-content'), threshold: 0.5, rootMargin: '0px 0px -30% 0px' });
+
+            sections.forEach(function (s) { obs.observe(s); });
+        });
+    </script>
+    <style>
+        @media (max-width: 900px) {
+            .dashboard-content {
+                padding: 1rem !important;
+                text-align: center;
+            }
+
+            .dashboard-panel {
+                text-align: center !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .dashboard-panel h2 {
+                text-align: center !important;
+            }
+
+            .dashboard-panel p {
+                text-align: center !important;
+            }
+            
+            .profile-header {
+                justify-content: center !important;
+                text-align: center !important;
+                flex-direction: column !important;
+            }
+
+            .dashboard-metrics {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                max-width: 300px;
+                margin: 0 auto !important;
+            }
+
+            .metric-card {
+                text-align: center !important;
+            }
+
+            .dashboard-two-col {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                max-width: 400px;
+                margin: 0 auto !important;
+            }
+
+            .dashboard-two-col>div {
+                text-align: center !important;
+            }
+
+            .dashboard-panel ul {
+                text-align: center !important;
+                max-width: 400px;
+                margin: 0 auto !important;
+            }
+
+            .dashboard-panel .btn {
+                display: block;
+                margin: 1rem auto 0 !important;
+                width: auto !important;
+                min-width: 200px;
+            }
+        }
+    </style>
+</body>
+
+</html>
