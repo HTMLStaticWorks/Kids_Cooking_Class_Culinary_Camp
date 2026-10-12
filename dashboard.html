@@ -81,10 +81,9 @@
         </header>
 
         <div class="dashboard-content">
-            <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Welcome back, <strong>Sarah Smith</strong>! Here is an overview of your young chefs' culinary journey.</p>
-
             <!-- Overview Section -->
-            <section id="overview" class="dashboard-panel" style="margin-top: 0;">
+            <section id="overview" class="dashboard-panel active-panel" style="margin-top: 0;">
+                <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Welcome back, <strong>Sarah Smith</strong>! Here is an overview of your young chefs' culinary journey.</p>
                 <h2>Overview & Activity</h2>
                 <p style="color: var(--text-muted); margin-bottom: 1rem;">Quick summary of your children's upcoming cooking sessions, recipe badges, and account status.</p>
                 <div class="dashboard-metrics">
@@ -433,27 +432,51 @@
                 backdrop.addEventListener('click', toggleMenu);
             }
 
-            function setCurrent(hash) {
-                var id = (hash || '#overview').replace('#', '') || 'overview';
-                links.forEach(function (a) {
-                    if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
-                    else a.removeAttribute('aria-current');
+            function showPanel(targetHash) {
+                var rawId = (targetHash || window.location.hash || '#overview').replace('#', '') || 'overview';
+                var targetSection = document.getElementById(rawId);
+
+                if (!targetSection || !targetSection.classList.contains('dashboard-panel')) {
+                    rawId = 'overview';
+                    targetSection = document.getElementById('overview');
+                }
+
+                sections.forEach(function (panel) {
+                    panel.classList.remove('active-panel');
+                    panel.style.display = 'none';
                 });
+
+                if (targetSection) {
+                    targetSection.classList.add('active-panel');
+                    targetSection.style.display = 'block';
+                }
+
+                links.forEach(function (a) {
+                    var linkHash = (a.getAttribute('href') || '').replace('#', '');
+                    if (linkHash === rawId) {
+                        a.setAttribute('aria-current', 'page');
+                    } else {
+                        a.removeAttribute('aria-current');
+                    }
+                });
+
+                var contentArea = document.querySelector('.dashboard-content');
+                if (contentArea) {
+                    contentArea.scrollTop = 0;
+                }
+                window.scrollTo({ top: 0, behavior: 'instant' });
             }
 
-            setCurrent('#overview');
-
-            var scrollLock = false;
-            var scrollLockTimer = null;
-
             links.forEach(function (a) {
-                a.addEventListener('click', function () {
-                    setCurrent(a.getAttribute('href'));
-                    scrollLock = true;
-                    clearTimeout(scrollLockTimer);
-                    scrollLockTimer = setTimeout(function () {
-                        scrollLock = false;
-                    }, 800);
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var href = a.getAttribute('href');
+                    if (history.pushState) {
+                        history.pushState(null, '', href);
+                    } else {
+                        window.location.hash = href;
+                    }
+                    showPanel(href);
 
                     if (window.innerWidth <= 900) {
                         toggleMenu();
@@ -461,17 +484,51 @@
                 });
             });
 
-            var obs = new IntersectionObserver(function (entries) {
-                if (scrollLock) return;
-                entries.forEach(function (en) {
-                    if (en.isIntersecting) setCurrent('#' + en.target.id);
+            document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+                if (anchor.closest('.dashboard-nav')) return;
+                anchor.addEventListener('click', function (e) {
+                    var href = anchor.getAttribute('href');
+                    var targetId = href.replace('#', '');
+                    var panel = document.getElementById(targetId);
+                    if (panel && panel.classList.contains('dashboard-panel')) {
+                        e.preventDefault();
+                        if (history.pushState) {
+                            history.pushState(null, '', href);
+                        } else {
+                            window.location.hash = href;
+                        }
+                        showPanel(href);
+                    }
                 });
-            }, { root: document.querySelector('.dashboard-content'), threshold: 0.5, rootMargin: '0px 0px -30% 0px' });
+            });
 
-            sections.forEach(function (s) { obs.observe(s); });
+            window.addEventListener('popstate', function () {
+                showPanel(window.location.hash);
+            });
+
+            showPanel(window.location.hash || '#overview');
         });
     </script>
     <style>
+        .dashboard-content > .dashboard-panel {
+            display: none;
+            animation: panelFadeIn 0.22s ease-out;
+        }
+
+        .dashboard-content > .dashboard-panel.active-panel {
+            display: block;
+        }
+
+        @keyframes panelFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         @media (max-width: 900px) {
             .dashboard-content {
                 padding: 1rem !important;

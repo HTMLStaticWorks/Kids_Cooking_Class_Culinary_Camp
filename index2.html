@@ -341,19 +341,19 @@
             </ul>
         </nav>
         <div class="nav-actions">
-
-            <a href="cart.html" class="icon-btn" title="Enrollment Cart">
+            <a href="cart.html" class="icon-btn" title="Enrollment Cart" aria-label="Enrollment Cart">
                 <i class="fas fa-shopping-cart"></i>
             </a>
-            <a href="login.html" class="icon-btn" title="Parent Portal">
-                <i class="fas fa-user"></i>
-            </a>
-            <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+            <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
                 <i class="fas fa-moon"></i>
             </button>
-            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL" aria-label="Toggle RTL">
                 <i class="fas fa-right-left"></i>
             </button>
+            <a href="login.html" class="btn btn-primary btn-nav-cta" title="Parent Portal Login" aria-label="Parent Portal Login">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <span>Parent Login</span>
+            </a>
             <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" type="button">
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
@@ -361,18 +361,67 @@
     </header>
 
     <main>
-        <!-- Split Hero Section -->
-        <section class="split-hero">
-            <div class="hero-content">
-                <h1>Culinary Adventures for <span style="color: var(--primary);">Young Chefs</span></h1>
-                <p>Interactive cooking classes, exciting culinary camps, and hands-on kitchen experiments where kids discover the joys of fresh food, knife safety, and creative flavor.</p>
-                <div class="hero-btns" style="justify-content: flex-start;">
-                    <a href="applications.html" class="btn btn-primary">Explore Summer Camps</a>
-                    <a href="products.html" class="btn btn-secondary">Classes by Age</a>
+        <!-- Redesigned Attractive Hero Section -->
+        <section class="hero-home2">
+            <div class="hero-home2-grid">
+                <div class="hero-home2-content">
+                    <div class="hero-home2-badge">
+                        <i class="fas fa-sparkles"></i>
+                        <span>Ages 4 to 17 · Hands-On Culinary Academy</span>
+                    </div>
+                    <h1>Culinary Adventures for <span class="text-highlight">Young Chefs</span></h1>
+                    <p class="hero-home2-lead">
+                        Joyful hands-on cooking classes, immersive summer camps, and exciting kitchen experiments. We teach real knife safety, delicious scratch recipes, and lifelong healthy eating confidence in a warm, nut-aware studio.
+                    </p>
+                    <div class="hero-home2-btns">
+                        <a href="applications.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> Explore Summer Camps
+                        </a>
+                        <a href="#cooking-programs" class="btn btn-secondary">
+                            <i class="fas fa-utensils"></i> Our Cooking Programs
+                        </a>
+                    </div>
+                    <div class="hero-home2-perks">
+                        <div class="hero-home2-perk">
+                            <i class="fas fa-shield-heart"></i>
+                            <span>100% Nut-Aware Studio</span>
+                        </div>
+                        <div class="hero-home2-perk">
+                            <i class="fas fa-user-check"></i>
+                            <span>Certified Chef Instructors</span>
+                        </div>
+                        <div class="hero-home2-perk">
+                            <i class="fas fa-book-open"></i>
+                            <span>Take-Home Recipe Cards</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1000&q=80" alt="Kids Cooking Studio">
+                <div class="hero-home2-media">
+                    <div class="hero-home2-image-wrap">
+                        <div class="hero-home2-image-inner">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80" alt="Young chefs happily learning cooking in a professional kitchen studio">
+                        </div>
+                    </div>
+                    <!-- Floating Glass Badges -->
+                    <div class="hero-floating-badge badge-top">
+                        <div class="hero-badge-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="hero-badge-text">
+                            <strong>4.9 / 5 Rating</strong>
+                            <span>12,500+ Happy Families</span>
+                        </div>
+                    </div>
+                    <div class="hero-floating-badge badge-bottom">
+                        <div class="hero-badge-icon">
+                            <i class="fas fa-cookie-bite"></i>
+                        </div>
+                        <div class="hero-badge-text">
+                            <strong>100% Hands-On</strong>
+                            <span>Cook, Taste &amp; Take Home</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -395,6 +444,302 @@
                     <div class="stat-item">
                         <h2>4.9 / 5</h2>
                         <p>Parent Satisfaction Score</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Cooking Programs Section -->
+        <section id="cooking-programs" class="programs-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-badge">
+                        <i class="fas fa-layer-group"></i> Tailored Age Pathways
+                    </span>
+                    <h2 class="section-title">Our Cooking Programs</h2>
+                    <p class="section-subtitle">
+                        Carefully structured, age-tailored culinary tracks that build kitchen safety, knife skills, and lifelong healthy eating confidence step by step.
+                    </p>
+                </div>
+
+                <div class="programs-grid">
+                    <!-- Program 1 -->
+                    <div class="program-card">
+                        <div class="program-card-media">
+                            <span class="program-age-pill">Ages 4–6</span>
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Tiny Bakers &amp; Pastry Explorers">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-card-header">
+                                <h3 class="program-card-title">Tiny Bakers &amp; Pastry Explorers</h3>
+                                <div class="program-card-price">$38 <small>/ session</small></div>
+                            </div>
+                            <p class="program-card-desc">
+                                A joyful sensory introduction to baking and cooking with child-safe nylon tools, playful measuring, and colorful dough experiments.
+                            </p>
+                            <ul class="program-highlights-list">
+                                <li><i class="fas fa-check-circle"></i> Kid-safe nylon cutters &amp; wooden tools</li>
+                                <li><i class="fas fa-check-circle"></i> Berry cupcakes, fruit skewers &amp; mini pitas</li>
+                                <li><i class="fas fa-check-circle"></i> Tactile dough kneading &amp; sensory tasting</li>
+                                <li><i class="fas fa-check-circle"></i> 60-min sessions · 1:5 chef-to-camper ratio</li>
+                            </ul>
+                            <div class="program-card-footer">
+                                <a href="products.html" class="btn btn-primary">Enroll Tiny Chef</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 2 -->
+                    <div class="program-card">
+                        <div class="program-card-media">
+                            <span class="program-age-pill">Ages 7–10</span>
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Junior Pizza &amp; Pasta Masters">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-card-header">
+                                <h3 class="program-card-title">Junior Pizza &amp; Pasta Masters</h3>
+                                <div class="program-card-price">$45 <small>/ session</small></div>
+                            </div>
+                            <p class="program-card-desc">
+                                Young chefs master the fundamentals: stretching artisan pizza dough, fresh stovetop sauces, and essential bear-claw knife techniques.
+                            </p>
+                            <ul class="program-highlights-list">
+                                <li><i class="fas fa-check-circle"></i> Hand-kneaded crusts, fresh mozzarella &amp; sauces</li>
+                                <li><i class="fas fa-check-circle"></i> Certified bear-claw knife safety with finger guards</li>
+                                <li><i class="fas fa-check-circle"></i> Safe stovetop simmering &amp; skillet technique</li>
+                                <li><i class="fas fa-check-circle"></i> 90-min sessions · 1:6 chef-to-camper ratio</li>
+                            </ul>
+                            <div class="program-card-footer">
+                                <a href="products.html" class="btn btn-primary">Enroll Junior Chef</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 3 -->
+                    <div class="program-card">
+                        <div class="program-card-media">
+                            <span class="program-age-pill">Ages 11–13</span>
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="Tween Global Flavors &amp; Handmade Pasta">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-card-header">
+                                <h3 class="program-card-title">Tween Global Flavors &amp; Artisans</h3>
+                                <div class="program-card-price">$52 <small>/ session</small></div>
+                            </div>
+                            <p class="program-card-desc">
+                                Hands-on international culinary techniques: rolling silky fresh egg noodles, craft pesto emulsions, and international street tacos.
+                            </p>
+                            <ul class="program-highlights-list">
+                                <li><i class="fas fa-check-circle"></i> Fresh handmade egg noodles &amp; stuffed ravioli</li>
+                                <li><i class="fas fa-check-circle"></i> International street tacos &amp; Asian wok noodles</li>
+                                <li><i class="fas fa-check-circle"></i> Flavor chemistry, spices &amp; kitchen hygiene</li>
+                                <li><i class="fas fa-check-circle"></i> 2-hour sessions · 1:6 chef-to-camper ratio</li>
+                            </ul>
+                            <div class="program-card-footer">
+                                <a href="products.html" class="btn btn-primary">Enroll Tween Chef</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 4 -->
+                    <div class="program-card">
+                        <div class="program-card-media">
+                            <span class="program-age-pill">Ages 14–17</span>
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Teen Culinary &amp; Pastry Academy">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-card-header">
+                                <h3 class="program-card-title">Teen Culinary &amp; Pastry Academy</h3>
+                                <div class="program-card-price">$65 <small>/ session</small></div>
+                            </div>
+                            <p class="program-card-desc">
+                                Advanced chef skills for motivated teens: classic French knife cuts, protein searing, pan sauce reductions, and fine dining plating.
+                            </p>
+                            <ul class="program-highlights-list">
+                                <li><i class="fas fa-check-circle"></i> Chef knife precision cuts (julienne, brunoise, chiffonade)</li>
+                                <li><i class="fas fa-check-circle"></i> Pan searing, gourmet reduction glazes &amp; risotto</li>
+                                <li><i class="fas fa-check-circle"></i> Fine pastry arts, choux pastry &amp; restaurant plating</li>
+                                <li><i class="fas fa-check-circle"></i> 2.5-hour sessions · 1:8 chef-to-camper ratio</li>
+                            </ul>
+                            <div class="program-card-footer">
+                                <a href="products.html" class="btn btn-primary">Enroll Teen Academy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Camp Spotlight -->
+                <div class="camp-spotlight-card">
+                    <div class="camp-spotlight-content">
+                        <span class="section-badge" style="margin-bottom: 6px;">
+                            <i class="fas fa-sun"></i> Summer &amp; School Break Camps
+                        </span>
+                        <h3>Immersive Week-Long Culinary Camps</h3>
+                        <p>
+                            Give your child an unforgettable summer adventure! Campers cook 3 fresh recipes daily from scratch, participate in friendly mystery-basket cook-offs, and celebrate at our Friday Family Graduation Feast.
+                        </p>
+                        <div class="camp-spotlight-badges">
+                            <div class="camp-spotlight-badge">
+                                <i class="fas fa-clock"></i> Full &amp; Half-Day Tracks
+                            </div>
+                            <div class="camp-spotlight-badge">
+                                <i class="fas fa-utensils"></i> Organic Fresh Lunch Included
+                            </div>
+                            <div class="camp-spotlight-badge">
+                                <i class="fas fa-award"></i> Apron, Hat &amp; Certificate Gift
+                            </div>
+                        </div>
+                        <a href="applications.html" class="btn btn-primary">
+                            <i class="fas fa-arrow-right"></i> Reserve Summer Camp Week
+                        </a>
+                    </div>
+                    <div class="camp-spotlight-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?auto=format&fit=crop&w=800&q=80" alt="Kids culinary summer camp workshop">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Kids Will Learn Section -->
+        <section id="what-kids-will-learn" class="learning-section">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-badge">
+                        <i class="fas fa-graduation-cap"></i> Core Learning Outcomes
+                    </span>
+                    <h2 class="section-title">What Kids Will Learn</h2>
+                    <p class="section-subtitle">
+                        Our hands-on kitchen laboratory goes far beyond following recipes — we nurture critical life skills, practical science, safety mindfulness, and teamwork that empower young chefs for life.
+                    </p>
+                </div>
+
+                <div class="learning-grid">
+                    <!-- Outcome 1 -->
+                    <div class="learning-card">
+                        <div class="learning-card-top">
+                            <div class="learning-icon-box icon-orange">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="learning-pill">Safety First</span>
+                        </div>
+                        <h3>Knife Safety &amp; Kitchen Hygiene</h3>
+                        <p>
+                            Mastering the protective "Bear Claw" grip, establishing dedicated cutting zones, using age-appropriate safety knives, and maintaining sterile prep stations to eliminate cross-contamination.
+                        </p>
+                        <div class="learning-takeaway">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Zero kitchen anxiety, total respect for sharp tools.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 2 -->
+                    <div class="learning-card">
+                        <div class="learning-card-top">
+                            <div class="learning-icon-box icon-green">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <span class="learning-pill">Nutrition</span>
+                        </div>
+                        <h3>Fresh Ingredients &amp; Palate Exploration</h3>
+                        <p>
+                            Connecting directly with real whole foods: fresh garden herbs, vibrant seasonal produce, and scratch cooking techniques that naturally turn picky eaters into curious, adventurous food explorers.
+                        </p>
+                        <div class="learning-takeaway">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Picky eaters willingly devour fresh vegetables.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 3 -->
+                    <div class="learning-card">
+                        <div class="learning-card-top">
+                            <div class="learning-icon-box icon-amber">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <span class="learning-pill">Applied STEM</span>
+                        </div>
+                        <h3>Kitchen Math &amp; Culinary Chemistry</h3>
+                        <p>
+                            Hands-on math and science in action: measuring volume fractions with cups and spoons, observing yeast fermentation biology, emulsifying dressings, and understanding caramelization thermodynamics.
+                        </p>
+                        <div class="learning-takeaway">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Textbook math and science become delicious reality.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 4 -->
+                    <div class="learning-card">
+                        <div class="learning-card-top">
+                            <div class="learning-icon-box icon-purple">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <span class="learning-pill">Culture</span>
+                        </div>
+                        <h3>World Cuisines &amp; Global Traditions</h3>
+                        <p>
+                            Traveling the globe through taste: hand-stretching Italian pizza, rolling Japanese nori maki, pressing Mexican corn masa, and learning the fascinating cultural histories behind traditional food staples.
+                        </p>
+                        <div class="learning-takeaway">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Broad global awareness and cultural appreciation.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 5 -->
+                    <div class="learning-card">
+                        <div class="learning-card-top">
+                            <div class="learning-icon-box icon-teal">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="learning-pill">Social Skills</span>
+                        </div>
+                        <h3>Kitchen Brigade &amp; Team Collaboration</h3>
+                        <p>
+                            Working in structured kitchen teams where every child takes turns as head chef, sous chef, and prep lead. Practicing vocal communication ("Behind you!", "Hot pan!"), empathy, and mutual encouragement.
+                        </p>
+                        <div class="learning-takeaway">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Social confidence, poise, and collaborative spirit.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 6 -->
+                    <div class="learning-card">
+                        <div class="learning-card-top">
+                            <div class="learning-icon-box icon-rose">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <span class="learning-pill">Independence</span>
+                        </div>
+                        <h3>Creative Plating &amp; Meal Independence</h3>
+                        <p>
+                            Artistic plate styling with color harmony, sauce drizzles, and garnish design. Best of all: the empowering independence and immense pride of preparing wholesome meals for their family at home.
+                        </p>
+                        <div class="learning-takeaway">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Lifelong self-reliance and creative confidence.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Take-Home Perks Bar -->
+                <div class="learning-perks-bar">
+                    <div class="learning-perk-item">
+                        <i class="fas fa-book-open"></i>
+                        <span>Laminated Step-by-Step Recipe Cards</span>
+                    </div>
+                    <div class="learning-perk-item">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Chef Apron &amp; Hat Included</span>
+                    </div>
+                    <div class="learning-perk-item">
+                        <i class="fas fa-award"></i>
+                        <span>Official Young Chef Graduation Certificate</span>
+                    </div>
+                    <div class="learning-perk-item">
+                        <i class="fas fa-box-open"></i>
+                        <span>Take-Home Tasting Box for Parents</span>
                     </div>
                 </div>
             </div>

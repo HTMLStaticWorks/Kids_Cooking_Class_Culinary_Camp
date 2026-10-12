@@ -84,14 +84,23 @@
         }
 
         .age-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            align-self: center;
+            width: fit-content;
             background: rgba(255, 94, 54, 0.12);
             color: var(--primary);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            padding: 3px 10px;
+            padding: 4px 14px;
             border-radius: 999px;
-            margin-bottom: 8px;
+            margin: 0 auto 6px;
+            letter-spacing: 0.02em;
+            line-height: 1.4;
+        }
+
+        [data-theme="dark"] .age-badge {
+            background: rgba(255, 94, 54, 0.2);
         }
     </style>
 </head>
@@ -116,19 +125,19 @@
             </ul>
         </nav>
         <div class="nav-actions">
-
-            <a href="cart.html" class="icon-btn" title="Enrollment Cart">
+            <a href="cart.html" class="icon-btn" title="Enrollment Cart" aria-label="Enrollment Cart">
                 <i class="fas fa-shopping-cart"></i>
             </a>
-            <a href="login.html" class="icon-btn" title="Parent Portal">
-                <i class="fas fa-user"></i>
-            </a>
-            <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+            <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
                 <i class="fas fa-moon"></i>
             </button>
-            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL" aria-label="Toggle RTL">
                 <i class="fas fa-right-left"></i>
             </button>
+            <a href="login.html" class="btn btn-primary btn-nav-cta" title="Parent Portal Login" aria-label="Parent Portal Login">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <span>Parent Login</span>
+            </a>
             <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false"
                 type="button">
                 <i class="fas fa-bars" aria-hidden="true"></i>

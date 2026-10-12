@@ -137,6 +137,40 @@
             text-decoration: underline;
         }
 
+        .social-login {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            cursor: pointer;
+            font-weight: 500;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .social-btn:hover { 
+                background-color: var(--bg-alt); 
+                border-color: var(--primary);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+        }
+
         .auth-footer {
             margin-top: 20px;
             font-size: 0.9rem;
@@ -245,6 +279,17 @@
 
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account &amp; Go to Dashboard</button>
             </form>
+
+            <div class="social-login">
+                <button type="button" class="social-btn" title="Sign in with Google">
+                    <i class="fab fa-google" style="font-size:1.1rem; color:#4285F4;"></i>
+                    <span>Sign in with Google</span>
+                </button>
+                <button type="button" class="social-btn" title="Sign in with Apple">
+                    <i class="fab fa-apple" style="font-size:1.2rem;"></i>
+                    <span>Sign in with Apple</span>
+                </button>
+            </div>
 
             <div class="auth-footer">
                 Already registered? <a href="login.html">Log In Here</a>

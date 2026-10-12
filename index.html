@@ -40,19 +40,19 @@
             </ul>
         </nav>
         <div class="nav-actions">
-
-            <a href="cart.html" class="icon-btn" title="Enrollment Cart">
+            <a href="cart.html" class="icon-btn" title="Enrollment Cart" aria-label="Enrollment Cart">
                 <i class="fas fa-shopping-cart"></i>
             </a>
-            <a href="login.html" class="icon-btn" title="Parent Portal">
-                <i class="fas fa-user"></i>
-            </a>
-            <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+            <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
                 <i class="fas fa-moon"></i>
             </button>
-            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+            <button class="icon-btn" id="rtl-toggle" title="Toggle RTL" aria-label="Toggle RTL">
                 <i class="fas fa-right-left"></i>
             </button>
+            <a href="login.html" class="btn btn-primary btn-nav-cta" title="Parent Portal Login" aria-label="Parent Portal Login">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <span>Parent Login</span>
+            </a>
             <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false"
                 type="button">
                 <i class="fas fa-bars" aria-hidden="true"></i>
@@ -237,23 +237,122 @@
                 <h2 class="section-title text-center">What Parents & Young Chefs Say</h2>
                 <div class="card-grid card-grid--three">
                     <article class="card">
-                        <p>"My 8-year-old was a picky eater who wouldn't touch vegetables. After one week of Junior Chef
-                            camp, he made roasted zucchini pizza for our whole family!"</p>
-                        <div style="margin-top: 20px; font-weight: 700; color: var(--primary);">- Rebecca M. (Mom of
-                            Leo, Age 8)</div>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-quote">"My 8-year-old was a picky eater who wouldn't touch vegetables. After one week of Junior Chef camp, he made roasted zucchini pizza for our whole family!"</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-author-name">Rebecca M.</span>
+                            <span class="testimonial-author-role">Mom of Leo, Age 8</span>
+                        </div>
                     </article>
                     <article class="card">
-                        <p>"The kitchen studio is sparkling clean, allergen-conscious, and the instructors are so warm
-                            and encouraging. Maya's confidence in the kitchen is soaring."</p>
-                        <div style="margin-top: 20px; font-weight: 700; color: var(--primary);">- David K. (Dad of Maya,
-                            Age 10)</div>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-quote">"The kitchen studio is sparkling clean, allergen-conscious, and the instructors are so warm and encouraging. Maya's confidence in the kitchen is soaring."</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-author-name">David K.</span>
+                            <span class="testimonial-author-role">Dad of Maya, Age 10</span>
+                        </div>
                     </article>
                     <article class="card">
-                        <p>"We booked the Cupcake Carnival Birthday Package for my daughter’s 9th birthday. Every kid
-                            had an apron, chef hat, and a huge smile. Best party ever!"</p>
-                        <div style="margin-top: 20px; font-weight: 700; color: var(--primary);">- Jessica T. (Mom of
-                            Emma, Age 9)</div>
+                        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-quote">"We booked the Cupcake Carnival Birthday Package for my daughter’s 9th birthday. Every kid had an apron, chef hat, and a huge smile. Best party ever!"</p>
+                        <div class="testimonial-author">
+                            <span class="testimonial-author-name">Jessica T.</span>
+                            <span class="testimonial-author-role">Mom of Emma, Age 9</span>
+                        </div>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery / Kids in Action -->
+        <section id="gallery">
+            <div class="container">
+                <div class="gallery-header">
+                    <span class="page-hero-badge" style="margin-bottom: 12px; display: inline-flex;"><i class="fas fa-camera-retro"></i> Young Chefs at Work</span>
+                    <h2 class="section-title text-center">Kids in Action: Joy in Every Recipe</h2>
+                    <p class="section-lead">From rolling artisan dough and piping celebration cupcakes to team recipe experiments, explore real moments of culinary pride from our young chefs.</p>
+                </div>
+
+                <div class="gallery-filters" role="tablist" aria-label="Gallery filters">
+                    <button class="gallery-filter-btn active" data-filter="all" type="button">All Moments</button>
+                    <button class="gallery-filter-btn" data-filter="baking" type="button">Baking &amp; Sweets</button>
+                    <button class="gallery-filter-btn" data-filter="savory" type="button">Pizza &amp; Pasta</button>
+                    <button class="gallery-filter-btn" data-filter="camps" type="button">Culinary Camps</button>
+                    <button class="gallery-filter-btn" data-filter="parties" type="button">Birthday Parties</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-card" data-category="baking">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80" alt="Young chef kneading dough" loading="lazy">
+                        <div class="gallery-card-overlay">
+                            <span class="gallery-tag">Baking Arts</span>
+                            <h3 class="gallery-title">Flour, Fun &amp; Fresh Bread</h3>
+                            <p class="gallery-desc">Junior chefs mastering yeast fermentation and bread braiding.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" data-category="savory">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80" alt="Handcrafted artisan pizza" loading="lazy">
+                        <div class="gallery-card-overlay">
+                            <span class="gallery-tag">Savory Kitchen</span>
+                            <h3 class="gallery-title">Artisan Pizza Toss</h3>
+                            <p class="gallery-desc">Creating scratch marinara sauce and personal pizza masterpieces.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" data-category="camps">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=700&q=80" alt="Culinary summer camp group in aprons" loading="lazy">
+                        <div class="gallery-card-overlay">
+                            <span class="gallery-tag">Summer Camp</span>
+                            <h3 class="gallery-title">Junior Chef Summer Camp</h3>
+                            <p class="gallery-desc">Team cooking challenges, market ingredients, and graduation smiles.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" data-category="savory">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=700&q=80" alt="Fresh pasta making session" loading="lazy">
+                        <div class="gallery-card-overlay">
+                            <span class="gallery-tag">Pasta Craft</span>
+                            <h3 class="gallery-title">Fresh Handmade Pasta</h3>
+                            <p class="gallery-desc">Egg-well kneading, hand-cranking fettuccine, and basil pestos.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" data-category="baking">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80" alt="Cupcake decorating station" loading="lazy">
+                        <div class="gallery-card-overlay">
+                            <span class="gallery-tag">Pastry Workshop</span>
+                            <h3 class="gallery-title">Cupcake Carnival Decorating</h3>
+                            <p class="gallery-desc">Piping buttercream rosettes, rainbow sprinkles, and fondant art.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" data-category="parties">
+                        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=700&q=80" alt="Young chefs birthday party celebration" loading="lazy">
+                        <div class="gallery-card-overlay">
+                            <span class="gallery-tag">Celebrations</span>
+                            <h3 class="gallery-title">Birthday Cooking Bash</h3>
+                            <p class="gallery-desc">Custom party aprons, chef hats, and memorable kitchen fun.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -281,6 +380,90 @@
                             <p>Discover how hands-on cooking transforms picky eaters into curious food explorers who
                                 love real, whole ingredients.</p>
                             <a href="about.html" class="btn btn-secondary">Read Our Philosophy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frequently Asked Questions (FAQ) -->
+        <section id="faq">
+            <div class="container">
+                <div class="faq-header">
+                    <span class="page-hero-badge" style="margin-bottom: 12px; display: inline-flex;"><i class="fas fa-circle-question"></i> Everything You Need to Know</span>
+                    <h2 class="section-title text-center">Frequently Asked Questions</h2>
+                    <p class="section-lead">Find clear answers to common parent questions about class age groups, dietary accommodations, observation policies, and what to bring.</p>
+                </div>
+
+                <div class="faq-container">
+                    <div class="faq-list">
+                        <div class="faq-item active">
+                            <button class="faq-question" type="button" aria-expanded="true">
+                                <span>What age groups can participate in your cooking programs?</span>
+                                <span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We welcome young culinary enthusiasts ages 4 to 17! Our sessions are thoughtfully organized into four age tiers: Tiny Bakers (ages 4–6), Junior Chefs (ages 7–10), Tween Culinary (ages 11–13), and Teen Gourmet Academy (ages 14–17). Each tier features age-tailored recipes, specialized safety tools, and matched chef instructor guidance.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>My child has food allergies (nuts, dairy, gluten). Is it safe for them?</span>
+                                <span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, absolutely! Our kitchen studio is strictly nut-aware (100% peanut and tree-nut free). When you enroll, you specify any allergies on your child's profile. We provide color-coded cutting boards, sanitized cookware, and dedicated allergen-free ingredient stations for gluten-free, dairy-free, and vegetarian dietary requirements.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>What should my child wear and bring to their cooking session?</span>
+                                <span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Children should wear comfortable casual clothing, closed-toe rubber-soled shoes (sneakers are perfect), and have longer hair pulled back. We provide clean, sanitized child-sized chef aprons, chef hats, all ingredients, kid-safe tools, and takeout containers. You don't need to bring any equipment!</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>Can parents stay and observe during the class?</span>
+                                <span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>For our Tiny Chefs (ages 4–6), parents are welcome to relax in our glass-partitioned observation lounge with complimentary espresso and high-speed Wi-Fi. For children ages 7 and up, classes are drop-off to build independence, focus, and teamwork. Parents are warmly invited in for the final 15 minutes for our presentation and tasting showcase!</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>What is your cancellation and makeup class policy?</span>
+                                <span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We know busy family schedules change! Single weekend workshops can be rescheduled with at least 48 hours notice for full studio credit. For multi-week academy courses and summer culinary camps, we offer up to 2 flexible makeup sessions per semester during our open studio hours.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>Do kids get to eat what they prepare or bring leftovers home?</span>
+                                <span class="faq-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Both! At the end of every class, students gather at our communal dining banquette to taste and celebrate the dishes they prepared. Any extra portions and bakery projects are packed into eco-friendly takeout boxes complete with step-by-step recipe cards to proudly share with family at home.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-help-box">
+                        <h3>Still have questions about our cooking programs?</h3>
+                        <p>Our friendly studio team is happy to answer any questions about schedules, group bookings, or custom party packages.</p>
+                        <div class="faq-help-actions">
+                            <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Send Us a Message</a>
+                            <a href="products.html" class="btn btn-secondary"><i class="fas fa-utensils"></i> View All Classes</a>
                         </div>
                     </div>
                 </div>
@@ -327,7 +510,8 @@
                     <ul>
                         <li><a href="products.html">Classes by Age</a></li>
                         <li><a href="applications.html">Summer Camps</a></li>
-                        <li><a href="pricing.html">Birthday Packages</a></li>
+                        <li><a href="#gallery">Kids in Action</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                         <li><a href="dashboard.html">Parent Dashboard</a></li>
                     </ul>
                 </div>

@@ -47,6 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileActions = document.createElement('div');
         mobileActions.className = 'mobile-nav-actions';
 
+        const ctaBtn = desktopActions.querySelector('a.btn-nav-cta, a.btn-primary');
+        if (ctaBtn) {
+            const mobileCtaWrap = document.createElement('div');
+            mobileCtaWrap.style.marginBottom = '14px';
+            const mobileLogin = ctaBtn.cloneNode(true);
+            mobileLogin.className = 'btn btn-primary';
+            mobileLogin.style.width = '100%';
+            mobileLogin.style.justifyContent = 'center';
+            mobileLogin.style.borderRadius = '50px';
+            mobileLogin.style.padding = '12px 20px';
+            mobileCtaWrap.appendChild(mobileLogin);
+            mobileActions.appendChild(mobileCtaWrap);
+        }
+
         const container = document.createElement('div');
         container.className = 'mobile-nav-actions-container';
 
@@ -231,4 +245,39 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    // FAQ Accordion Handler
+    document.querySelectorAll('.faq-item').forEach((item) => {
+        const questionBtn = item.querySelector('.faq-question');
+        if (!questionBtn) return;
+        questionBtn.addEventListener('click', () => {
+            const isOpen = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach((other) => {
+                if (other !== item) other.classList.remove('active');
+            });
+            item.classList.toggle('active', !isOpen);
+        });
+    });
+
+    // Gallery Filter Handler
+    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-card');
+    if (filterBtns.length && galleryItems.length) {
+        filterBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach((card) => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });
