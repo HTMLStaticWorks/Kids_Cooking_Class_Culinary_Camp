@@ -16,6 +16,88 @@
             document.documentElement.setAttribute('dir', d);
         })();
     </script>
+    <style>
+        /* Birthday Parties - Popular Party Add-Ons Alignment Fix */
+        #plan-details .plan-details-content {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .party-addons-list {
+            margin-top: 22px;
+            list-style: none;
+            padding: 0;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: left;
+            max-width: 100%;
+        }
+
+        [dir="rtl"] .party-addons-list {
+            text-align: right;
+        }
+
+        .party-addons-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        [dir="rtl"] .party-addons-list li {
+            text-align: right;
+        }
+
+        .party-addons-list li i {
+            color: var(--secondary);
+            margin-top: 3px;
+            flex-shrink: 0;
+            font-size: 0.95rem;
+        }
+
+        .party-addons-list li span {
+            flex: 1;
+        }
+
+        @media (max-width: 992px) {
+            #plan-details .card-grid[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+                gap: 32px !important;
+            }
+
+            #plan-details .plan-details-content {
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            #plan-details .party-addons-list {
+                display: inline-flex;
+                margin: 20px auto 0;
+                text-align: left;
+                max-width: 100%;
+            }
+
+            [dir="rtl"] #plan-details .party-addons-list {
+                text-align: right;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #plan-details .party-addons-list {
+                display: flex;
+                width: 100%;
+            }
+
+            .party-addons-list li {
+                font-size: 0.9rem;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -149,14 +231,14 @@
             <div class="container">
                 <h2 class="section-title text-center">Popular Party Add-Ons</h2>
                 <div class="card-grid" style="grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-                    <div>
+                    <div class="plan-details-content">
                         <h3>Make the Day Extra Magical</h3>
                         <p>Customize your child’s celebration with personalized party favors, custom cakes, and extra guest stations.</p>
-                        <ul style="margin-top: 20px; list-style: none; line-height: 2;">
-                            <li><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i> <strong>Custom Engraved Wooden Spoons</strong> — $6 per guest</li>
-                            <li><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i> <strong>Artisan Bakery Birthday Cake</strong> — from $55</li>
-                            <li><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i> <strong>Additional Young Chef (over pkg limit)</strong> — $25 each</li>
-                            <li><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i> <strong>Parent Refreshment Station (Coffee, Fruit & Pastries)</strong> — $65</li>
+                        <ul class="party-addons-list">
+                            <li><i class="fas fa-check" aria-hidden="true"></i> <span><strong>Custom Engraved Wooden Spoons</strong> — $6 per guest</span></li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> <span><strong>Artisan Bakery Birthday Cake</strong> — from $55</span></li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> <span><strong>Additional Young Chef (over pkg limit)</strong> — $25 each</span></li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> <span><strong>Parent Refreshment Station (Coffee, Fruit & Pastries)</strong> — $65</span></li>
                         </ul>
                     </div>
                     <div>

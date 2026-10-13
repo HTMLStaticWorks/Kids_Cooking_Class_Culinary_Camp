@@ -802,6 +802,25 @@ html[data-theme="dark"] .theme-toggle-btn .theme-icon-sun {
     margin-bottom: 0;
 }
 
+#best-sellers .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#best-sellers .card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
+#best-sellers .card-content .btn {
+    margin-top: auto !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Dashboard Mockup */
 .dashboard-preview {
     background: var(--card);
@@ -985,6 +1004,10 @@ footer .footer-column p {
 /* CTA band on primary background: solid primary-style button */
 .section-cta-band {
     text-align: center;
+}
+
+.section-cta-band .btn {
+    margin: 0 !important;
 }
 
 .section-cta-band .btn-primary-on-dark {
@@ -1384,6 +1407,87 @@ footer .footer-column p {
     height: 6px;
     border-radius: 50%;
     background: var(--primary);
+}
+
+/* Birthday Parties - Popular Party Add-Ons Alignment Fix */
+#plan-details .plan-details-content {
+    max-width: 600px;
+    width: 100%;
+}
+
+.party-addons-list {
+    margin-top: 22px;
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+    max-width: 100%;
+}
+
+[dir="rtl"] .party-addons-list {
+    text-align: right;
+}
+
+.party-addons-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+[dir="rtl"] .party-addons-list li {
+    text-align: right;
+}
+
+.party-addons-list li i {
+    color: var(--secondary);
+    margin-top: 3px;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+}
+
+.party-addons-list li span {
+    flex: 1;
+}
+
+@media (max-width: 992px) {
+    #plan-details .card-grid[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 32px !important;
+    }
+
+    #plan-details .plan-details-content {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #plan-details .party-addons-list {
+        display: inline-flex;
+        margin: 20px auto 0;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    [dir="rtl"] #plan-details .party-addons-list {
+        text-align: right;
+    }
+}
+
+@media (max-width: 480px) {
+    #plan-details .party-addons-list {
+        display: flex;
+        width: 100%;
+    }
+
+    .party-addons-list li {
+        font-size: 0.9rem;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 900px) {
